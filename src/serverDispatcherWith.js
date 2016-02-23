@@ -4,7 +4,7 @@
 import express from 'express';
 import { createServerFactory } from 'isomorphic-dispatcher';
 
-import { DEFAULT_PATH, DEFAULT_ENCODE, DEFAULT_DECODE } from './defaults';
+import * as defaultSettings from './defaults';
 import { encode } from './dispatchResponse';
 import { decode } from './dispatchRequest';
 import sendXMLHttpRequest from './sendXMLHttpRequest';
@@ -31,16 +31,17 @@ export default function serverDispatcherWith(
 	settings: ServerDispatcherSettings,
 	getOnServerArg: (req: ExpressReq) => any
 ): ExpressRouter {
-	const { path, encodeState, decodeState } = settings;
+	const { path, encodeState, decodeState } = { ...defaultSettings, ...settings };
 
 	let router = express.Router();
+
 	router.use((req, res, next) => {
 		req.dispatcher = createServerFactory(stores, { onServerArg: getOnServerArg(req, res) });
 		next();
 	});
-	router.post(path? path: DEFAULT_PATH, (req, res, next) => {
+	router.post(path, (req, res, next) => {
 		// Perform given actions on store
-		const { startingPoints, actions } = decode(req.body, decodeState? decodeState: DEFAULT_DECODE);
+		const { startingPoints, actions } = decode(req.body, decodeState);
 		const dispatcherPromise = req.dispatcher.getDispatcherAfter(startingPoints, actions);
 
 		dispatcherPromise.then((dispatcher) => {
@@ -51,7 +52,7 @@ export default function serverDispatcherWith(
 			});
 
 			// Send response
-			const responseJson = encode(updatedStates, encodeState? encodeState: DEFAULT_ENCODE);
+			const responseJson = encode(updatedStates, encodeState);
 			res.send(responseJson);
 		}).catch((err) => {
 			next(err);

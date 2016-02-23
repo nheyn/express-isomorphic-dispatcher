@@ -3,7 +3,7 @@
  */
 import { createClientFactory } from 'isomorphic-dispatcher';
 
-import { DEFAULT_PATH, DEFAULT_ENCODE, DEFAULT_DECODE } from './defaults';
+import * as defaultSettings from './defaults';
 import { encode } from './dispatchRequest';
 import { decode } from './dispatchResponse';
 import sendXMLHttpRequest from './sendXMLHttpRequest';
@@ -25,15 +25,15 @@ const HTTP_METHOD = 'POST';
  * @return					{Dispatcher}
  */
 export default function createClientDispatcher(stores: StoresObject, settings: ClientDispatcherSettings): Dispatcher {
-	const { path, encodeState, decodeState } = settings;
+	const { path, encodeState, decodeState } = { ...defaultSettings, ...settings };
 	const dispatcherFactory = createClientFactory(stores, (pausePoints, actions) => {
 		// Send paused state to server
-		const data = encode(pausePoints, actions, encodeState? encodeState: DEFAULT_ENCODE);
-		const responsePromise = sendXMLHttpRequest(HTTP_METHOD, path? path: DEFAULT_PATH, data);
+		const data = encode(pausePoints, actions, encodeState);
+		const responsePromise = sendXMLHttpRequest(HTTP_METHOD, path, data);
 
 		// Update client for response
 		return responsePromise.then((response) => {
-			return decode(response, decodeState? decodeState: DEFAULT_DECODE);
+			return decode(response, decodeState);
 		});
 	});
 
