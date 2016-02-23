@@ -1,0 +1,36 @@
+{
+	"name": "express-isomorphic-dispatcher",
+	"version": "1.0.0-dev",
+	"description": "Connects an isomorphic-dispatcher client Dispatcher to an express app.",
+	"author": "Nick Heyn <nick@heyn.io>",
+	"main": "./lib/index.js",
+	"repository" : {
+		"type" : "git",
+		"url" : "https://github.com/nheyn/express-isomorphic-dispatcher"
+	},
+	"dependencies": {
+		"isomorphic-dispatcher": "1.0.0-rc7",
+		"express": "4"
+	},
+	"devDependencies": {
+		"babel-cli": "^6.3.0",
+		"babel-preset-es2015": "^6.3.0",
+		"babel-preset-stage-0": "^6.3.0",
+		"jest-cli": "^0.8.2",
+		"flow-bin": "^0.20.0"
+	},
+	"scripts": {
+		"flow": "./node_modules/.bin/flow",
+		"flow:stop": "./node_modules/.bin/flow stop",
+		"test": "jest",
+		"check": "npm run flow && npm run test",
+		"build:babel": "babel ./src/ -d ./lib/",
+		"build": "npm run check && npm run build:babel",
+		"prepublish": "npm run build",
+		"clean": "rm -rf ./lib/ && npm flow:stop"
+	},
+	"license": "MIT",
+	"engines": {
+		"node": "v5"
+	}
+}
