@@ -13,7 +13,7 @@ RUN chown node:node ./
 # Get isomorphic-dispatcher files
 COPY ./flowlib ./flowlib
 COPY ./.flowconfig ./.flowconfig
-#COPY ./.babelrc ./.babelrc
+COPY ./.babelrc ./.babelrc
 COPY ./package.json	./package.json
 COPY ./src ./src
 RUN chown -R node:node ./*

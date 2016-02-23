@@ -16,14 +16,15 @@
 		"babel-cli": "^6.3.0",
 		"babel-preset-es2015": "^6.3.0",
 		"babel-preset-stage-0": "^6.3.0",
-		"jest-cli": "^0.8.2",
+		"babel-plugin-syntax-flow": "^6.3.0",
+		"babel-plugin-transform-flow-strip-types": "^6.3.0",
 		"flow-bin": "^0.20.0"
 	},
 	"scripts": {
 		"flow": "./node_modules/.bin/flow",
 		"flow:stop": "./node_modules/.bin/flow stop",
 		"babel": "babel ./src/ -d ./lib/",
-		"build": "$()",
+		"build": "npm run flow && npm run babel",
 		"prepublish": "npm run build",
 		"clean": "rm -rf ./lib/ && npm flow:stop"
 	},
