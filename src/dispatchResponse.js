@@ -16,8 +16,14 @@ type ResData = {
  * @return				{ResData}					The data to respond to the client with
  */
 export function encode(updatedStates: StatesObject, encodeState: EncodeStateFunc): ResData {
-	//TODO
-	return {};
+	const newStates = {};
+	for(let storeName in updatedStates) {
+		const updatedState = updatedStates[storeName];
+
+		newStates[storeName] = encodeState(storeName, updatedState);
+	}
+
+	return { newStates };
 }
 
 /**
@@ -29,6 +35,13 @@ export function encode(updatedStates: StatesObject, encodeState: EncodeStateFunc
  * @return				{StatesObject}				The updated states
  */
 export function decode(response: ResData, decodeState: DecodeStateFunc): StatesObject {
-	//TODO
-	return {};
+	const { newStates } = response;
+	const updatedStates = {};
+	for(let storeName in newStates) {
+		const newState = newStates[storeName];
+
+		updatedStates[storeName] = decodeState(storeName, newState);
+	}
+
+	return updatedStates;
 }
