@@ -3,11 +3,12 @@
  */
 
 type ReqData = Object; //TODO
+type DecodedPause = { startingPoints: StartingPoints, actions: Array<Action> };
 
 /**
  * //TODO
  */
-function encode(pausePoints: Array<StartingPoint>, actions: Array<Action>, encodeState: EcodeStoreFunc): ReqData {
+export function encode(pausePoints: StartingPoints, actions: Array<Action>, encodeState: EncodeStateFunc): ReqData {
 	//TODO
 	return {};
 }
@@ -15,11 +16,10 @@ function encode(pausePoints: Array<StartingPoint>, actions: Array<Action>, encod
 /**
  * //TODO
  */
-function decode(data: ReqData, decodeState: DecodeStoreFunc)
-												: { startingPoints: Array<StartingPoint>, actions: Array<Action> } {
+export function decode(data: ReqData, decodeState: DecodeStateFunc): DecodedPause {
 	//TODO
 	return {
-		startingPoints: [],
-		acitons: []
+		startingPoints: {},
+		actions: []
 	};
 }

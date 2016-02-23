@@ -9,7 +9,7 @@
 		"url" : "https://github.com/nheyn/express-isomorphic-dispatcher"
 	},
 	"dependencies": {
-		"isomorphic-dispatcher": "1.0.0-rc7",
+		"isomorphic-dispatcher": "1.0.0-rc8",
 		"express": "4"
 	},
 	"devDependencies": {
@@ -22,10 +22,8 @@
 	"scripts": {
 		"flow": "./node_modules/.bin/flow",
 		"flow:stop": "./node_modules/.bin/flow stop",
-		"test": "jest",
-		"check": "npm run flow && npm run test",
-		"build:babel": "babel ./src/ -d ./lib/",
-		"build": "npm run check && npm run build:babel",
+		"babel": "babel ./src/ -d ./lib/",
+		"build": "$()",
 		"prepublish": "npm run build",
 		"clean": "rm -rf ./lib/ && npm flow:stop"
 	},

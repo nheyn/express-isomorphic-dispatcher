@@ -8,7 +8,7 @@ type ResData = Object; //TODO
 /**
  * //TODO
  */
-function encode(updatedStates: StatesObject, encodeState: EcodeFunc): ResData {
+export function encode(updatedStates: StatesObject, encodeState: EncodeStateFunc): ResData {
 	//TODO
 	return {};
 }
@@ -16,7 +16,7 @@ function encode(updatedStates: StatesObject, encodeState: EcodeFunc): ResData {
 /**
  * //TODO
  */
-function decode(response: ResData, decodeState: DecodeFunc): StatesObject {
+export function decode(response: ResData, decodeState: DecodeStateFunc): StatesObject {
 	//TODO
 	return {};
 }

@@ -31,9 +31,9 @@ export function serverDispatcherWith(
 
 		dispatcherPromise.then((dispatcher) => {
 			// Get updated stores
-			const updatedStoreNames = Object.keys(pausedStates);
+			const updatedStoreNames = Object.keys(startingPoints);
 			const updatedStates = dispatcher.getStateForAll().filter((_, storeName) => {
-				return pausedStates.includes(storeName);
+				return updatedStoreNames.includes(storeName);
 			});
 
 			// Send response
@@ -51,17 +51,15 @@ type ClientDispatcherSettings = Object; //TODO
 
 export function createClientDispatcher(stores: ClientDispatcherSettings, settings: Object): Dispatcher {
 	const { path, encodeState, decodeState } = settings;
-	const dispatcherFactory = createClientFactory(stores, {
-		finishOnServer(pausePoints, actions) {
-			// Send paused state to server
-			const data = dispatchRequest.encode(pausePoints, actions, encodeState);
-			const responsePromise = sendXMLHttpRequest(path? path: DEFAULT_PATH, data);
+	const dispatcherFactory = createClientFactory(stores, (pausePoints, actions) => {
+		// Send paused state to server
+		const data = dispatchRequest.encode(pausePoints, actions, encodeState);
+		const responsePromise = sendXMLHttpRequest(path? path: DEFAULT_PATH, data);
 
-			// Update client for response
-			return responsePromise.then((response) => {
-				return dispatchResponse.decode(response, decodeState);
-			});
-		}
+		// Update client for response
+		return responsePromise.then((response) => {
+			return dispatchResponse.decode(response, decodeState);
+		});
 	});
 
 	return dispatcherFactory.getInitialDispatcher();
