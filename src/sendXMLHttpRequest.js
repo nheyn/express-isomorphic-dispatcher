@@ -3,7 +3,14 @@
  */
 
 /**
- * //TODO
+ * Create a promise that resolve to response to an http request.
+ *
+ *
+ * @param method	{'GET' | 'POST'}	The http method to use
+ * @param url		{string}			The url to send the http request to
+ * @param data		{Object}			The object to send the server, sent as "application/json; charset=UTF-8"
+ *
+ * @return			{Promise<Object>}	A promise that resolve the http response
  */
 export default function sendXMLHttpRequest(method: 'GET' | 'POST', url: string, data: Object): Promise<Object> {
 	return new Promise((resolve, reject) => {
