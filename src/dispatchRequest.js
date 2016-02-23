@@ -19,8 +19,16 @@ type DecodedPause = { startingPoints: StartingPoints, actions: Array<Action> };
  * @return				{ReqData}					The data to pass in the HTTP request
  */
 export function encode(pausePoints: StartingPoints, actions: Array<Action>, encodeState: EncodeStateFunc): ReqData {
-	//TODO
-	return {};
+	// Encode pause points for sending over http
+	let startingPoints = {};
+	for(let storeName in pausePoints) {
+		const { state, index } = pausePoints[storeName];
+		const encodedState = encodeState(storeName, state);
+
+		startingPoints[storeName] = { state: encodeState, index };
+	}
+
+	return { startingPoints, actions };
 }
 
 /**
@@ -32,9 +40,15 @@ export function encode(pausePoints: StartingPoints, actions: Array<Action>, enco
  * @return				{DecodePause}				The starting points and actions to start the dispatch from
  */
 export function decode(data: ReqData, decodeState: DecodeStateFunc): DecodedPause {
-	//TODO
-	return {
-		startingPoints: {},
-		actions: []
-	};
+	const { startingPoints: encodeStartingPoints, actions } = data;
+
+	let startingPoints = {};
+	for(let storeName in encodeStartingPoints) {
+		const { state: encodeState, index } = encodeStartingPoints[storeName];
+		const state = decodeState(storeName, encodeState);
+
+		startingPoints[storeName] = { state, index };
+	}
+
+	return { startingPoints, actions };
 }
