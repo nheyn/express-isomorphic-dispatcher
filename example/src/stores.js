@@ -83,4 +83,13 @@ const todoList = createStore(todoListInitialState).register((state, action) => {
 	return state.update(action.index, (item) => item.set('checked', false));
 });
 
+// Encode / Decode store states
+export function encode(storeName, state) {
+	return JSON.stringify(state);
+}
+
+export function encode(storeName, data) {
+	return JSON.parse(data);
+}
+
 export default { basicInfo, todoList };

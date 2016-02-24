@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom';
 import { createClientDispatcher } from 'express-isomorphic-dispatcher';
 
 import App from './app';
-import stores from './stores';
+import stores, { encode, decode } from './stores';
 
 // Enable react dev tools
 window.React = React;
 
 window.onload(() => {
-	//TODO, add dispatcher
-	ReactDOM.render(<App />, window.document.getElementById('react-app'));
+	const dispatcher = createClientDispatcher(stores, { encode, decode });
+
+	ReactDOM.render(<App dispatcher={dispatcher} />, window.document.getElementById('react-app'));
 });

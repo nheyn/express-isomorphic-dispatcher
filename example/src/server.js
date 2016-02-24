@@ -4,7 +4,7 @@ import express from 'express';
 import { serverDispatcherWith } from 'express-isomorphic-dispatcher';
 
 import App from './app';
-import stores from './stores';
+import stores, { encode, decode } from './stores';
 
 
 let app = express();
@@ -13,10 +13,12 @@ app.use((req, res, next) => {
 	console.log(`[${url}]: `, { method, params, query });
 	next();
 });
+app.use(serverDispatcherWith(stores, { encode, decode }));
 app.get('/', (req, res) => {
-	//TODO, add dispatcher
+	const dispatcher = req.dispatcher.getInitialDispatcher();
+
 	res.send(
-		ReactDOM.renderToString(<App />)
+		ReactDOM.renderToString(<App dispatcher={dispatcher} />)
 	);
 });
 app.use((err, req, res, next) => {
