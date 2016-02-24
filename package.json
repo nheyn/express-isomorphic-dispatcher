@@ -10,7 +10,8 @@
 	},
 	"dependencies": {
 		"isomorphic-dispatcher": "1.0.0-rc8",
-		"express": "4"
+		"express": "4",
+		"immutable": "^3.7.6"
 	},
 	"devDependencies": {
 		"babel-cli": "^6.3.0",

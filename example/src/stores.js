@@ -1,3 +1,4 @@
+import Immutable from 'immutable';
 import { createStore } from 'isomorphic-dispatcher';
 
 // Basic Info Store
@@ -29,4 +30,57 @@ const basicInfo = createStore(basicInfoInitialState).register((state, action) =>
 	return { ...state, authors };
 });
 
-export default { basicInfo };
+// Todo List Store
+export const TODO_LIST_UPDATE_DESCRIPTION = 'TODO_LIST_UPDATE_DESCRIPTION';
+export const TODO_LIST_CHECK_ITEM = 'TODO_LIST_CHECK_ITEM';
+export const TODO_LIST_UNCHECK_ITEM = 'TODO_LIST_UNCHECK_ITEM';
+const todoListInitialState = Immutable.List();
+const TodoListItem = Immutable.Record({ checked: false, description: 'New Item' });
+
+const todoList = createStore(todoListInitialState).register((state, action) => {
+	if(action.type !== TODO_LIST_ADD_ITEM) return state;
+
+	return state.push(new TodoListItem());
+}).register((state, action) => {
+	if(action.type !== TODO_LIST_UPDATE_DESCRIPTION) return state;
+	if(typeof action.index !== 'number') {
+		console.error('The index for TODO_LIST_UPDATE_DESCRIPTION must be a number');
+		return state;
+	}
+	if(action.index < 0 || action.index > state.size) {
+		console.error('The index for TODO_LIST_UPDATE_DESCRIPTION must be an index with in the list');
+		return state;
+	}
+	if(typeof action.description !== 'string') {
+		console.error('The description for TODO_LIST_UPDATE_DESCRIPTION must be a string');
+		return state;
+	}
+
+	return state.update(action.index, (item) => item.set('description', action.description));
+}).register((state, action ) => {
+	if(action.type !== TODO_LIST_CHECK_ITEM) return state;
+	if(typeof action.index !== 'number') {
+		console.error('The index for TODO_LIST_CHECK_ITEM must be a number');
+		return state;
+	}
+	if(action.index < 0 || action.index > state.size) {
+		console.error('The index for TODO_LIST_CHECK_ITEM must be an index with in the list');
+		return state;
+	}
+
+	return state.update(action.index, (item) => item.set('checked', true));
+}).register((state, action ) => {
+	if(action.type !== TODO_LIST_UNCHECK_ITEM) return state;
+	if(typeof action.index !== 'number') {
+		console.error('The index for TODO_LIST_UNCHECK_ITEM must be a number');
+		return state;
+	}
+	if(action.index < 0 || action.index > state.size) {
+		console.error('The index for TODO_LIST_UNCHECK_ITEM must be an index with in the list');
+		return state;
+	}
+
+	return state.update(action.index, (item) => item.set('checked', false));
+});
+
+export default { basicInfo, todoList };
