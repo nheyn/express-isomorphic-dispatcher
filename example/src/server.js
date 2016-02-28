@@ -5,7 +5,7 @@ import path from 'path';
 import { serverDispatcherWith } from 'express-isomorphic-dispatcher';
 
 import App from './components';
-import stores, { encode, decode } from './stores';
+import stores, { encodeState, decodeState } from './stores';
 
 
 let app = express();
@@ -14,7 +14,7 @@ app.use((req, res, next) => {
 	console.log(`[${url}]: `, { method, params, query });
 	next();
 });
-app.use(serverDispatcherWith(stores, { encode, decode }));
+app.use(serverDispatcherWith(stores, { encodeState, decodeState }));
 app.get('/', (req, res) => {
 	const dispatcher = req.dispatcher.getInitialDispatcher();
 	const reactHtml = ReactDOM.renderToString(<App dispatcher={dispatcher} />);

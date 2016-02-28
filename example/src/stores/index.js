@@ -7,12 +7,12 @@ export default {
 };
 
 // Encode / Decode store states
-export function encode(storeName, state) {
+export function encodeState(storeName, state) {
 	//TODO, fix for ImmutableJS
 	return JSON.stringify(state);
 }
 
-export function encode(storeName, data) {
+export function decodeState(storeName, data) {
 	//TODO, fix for ImmutableJS
 	return JSON.parse(data);
 }
