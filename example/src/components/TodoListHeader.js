@@ -11,6 +11,10 @@ const TodoListHeader = React.createClass({
 		dispatch: React.PropTypes.func.isRequired
 	},
 	updateTitle(newTitle) {
+		console.log('this.props.dispatch', {
+			type: BASIC_INFO_SET_TITLE,
+			title: newTitle
+		});
 		this.props.dispatch({
 			type: BASIC_INFO_SET_TITLE,
 			title: newTitle
