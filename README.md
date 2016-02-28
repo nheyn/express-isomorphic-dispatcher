@@ -3,7 +3,7 @@ __NOTE__ Currently not sending dispatchers to server
 # Express Isomorphic Dispatcher
 *Express middlware that connects a client and server Isomorphic Dispatcher*
 
-Basic express middleware that automatically connects a client and sever dispatcher, from [isomorphic-dispatcher]().
+Basic express middleware that automatically connects a client and sever dispatcher, from [isomorphic-dispatcher](https://github.com/nheyn/isomorphic-dispatcher).
 
 ### Features
 * A function that creates a dispatcher that sends the clients dispatches to the server, when 'onServer' is called
@@ -11,7 +11,7 @@ Basic express middleware that automatically connects a client and sever dispatch
 	* Adds a DispatcherFactory to req object
 	* Handles calls from the client side dispatcher, when 'onServer' is called
 
-### Dependencies (from [isomorphic-dispatcher]())
+### Dependencies (from [isomorphic-dispatcher](https://github.com/nheyn/isomorphic-dispatcher))
 * ES2015(ES6) Promises
 	* Must include an ES2015 compatible Promises library, tested using [Babel polyfill](https://babeljs.io/docs/usage/polyfill/)
 
