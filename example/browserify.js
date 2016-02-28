@@ -19,5 +19,8 @@ ignore.forEach(function(module) {
 // Write file
 var appJsWriteStream = fs.createWriteStream('app.js', { flags : 'w' });
 var appJsBundle = b.bundle();
+appJsBundle.on('end', function() {
+	console.log('lib/client.js -> app.js');
+});
 
 appJsBundle.pipe(appJsWriteStream);
