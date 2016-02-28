@@ -3,7 +3,7 @@
  */
 import { createClientFactory } from 'isomorphic-dispatcher';
 
-import * as defaultSettings from './defaults';
+import defaultSettings from './defaults';
 import { encode } from './dispatchRequest';
 import { decode } from './dispatchResponse';
 import sendXMLHttpRequest from './sendXMLHttpRequest';
@@ -24,7 +24,10 @@ const HTTP_METHOD = 'POST';
  *
  * @return					{Dispatcher}
  */
-export default function createClientDispatcher(stores: StoresObject, settings: ClientDispatcherSettings): Dispatcher {
+export default function createClientDispatcher(
+	stores: StoresObject,
+	settings?: ClientDispatcherSettings = {}
+): Dispatcher {
 	const { path, encodeState, decodeState } = { ...defaultSettings, ...settings };
 	const dispatcherFactory = createClientFactory(stores, (pausePoints, actions) => {
 		// Send paused state to server

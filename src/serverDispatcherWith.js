@@ -4,7 +4,7 @@
 import express from 'express';
 import { createServerFactory } from 'isomorphic-dispatcher';
 
-import * as defaultSettings from './defaults';
+import defaultSettings from './defaults';
 import { encode } from './dispatchResponse';
 import { decode } from './dispatchRequest';
 import sendXMLHttpRequest from './sendXMLHttpRequest';
@@ -28,15 +28,14 @@ type ServerDispatcherSettings = {
  */
 export default function serverDispatcherWith(
 	stores: StoresObject,
-	settings: ServerDispatcherSettings,
-	getOnServerArg: (req: ExpressReq) => any
+	settings?: ServerDispatcherSettings = {},
+	getOnServerArg?: (req: ExpressReq) => any
 ): ExpressRouter {
 	const { path, encodeState, decodeState } = { ...defaultSettings, ...settings };
 
 	let router = express.Router();
-
 	router.use((req, res, next) => {
-		req.dispatcher = createServerFactory(stores, { onServerArg: getOnServerArg(req, res) });
+		req.dispatcher = createServerFactory(stores, { onServerArg: getOnServerArg? getOnServerArg(req): null });
 		next();
 	});
 	router.post(path, (req, res, next) => {
