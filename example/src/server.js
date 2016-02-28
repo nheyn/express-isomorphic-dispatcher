@@ -4,7 +4,7 @@ import express from 'express';
 import path from 'path';
 import { serverDispatcherWith } from 'express-isomorphic-dispatcher';
 
-import App from './App';
+import App from './components';
 import stores, { encode, decode } from './stores';
 
 

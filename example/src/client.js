@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createClientDispatcher } from 'express-isomorphic-dispatcher';
 
-import App from './App';
+import App from './components';
 import stores, { encode, decode } from './stores';
 
 // Enable react dev tools

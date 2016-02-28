@@ -1,8 +1,8 @@
 import React from 'react';
 import Immutable from 'immutable';
 
-import TodoListHeader from './components/TodoListHeader';
-import TodoListBody from './components/TodoListBody';
+import TodoListHeader from './TodoListHeader';
+import TodoListBody from './TodoListBody';
 
 /**
  * React Component that render the entire app.
