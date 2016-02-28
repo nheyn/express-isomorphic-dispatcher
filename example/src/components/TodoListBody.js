@@ -7,7 +7,7 @@ import {
 	TODO_LIST_UNCHECK_ITEM,
 	TODO_LIST_UPDATE_DESCRIPTION,
 	TODO_LIST_ADD_ITEM
-} from '../stores';
+} from '../stores/todoList';
 
 const TodoListBody = React.createClass({
 	propTypes: {

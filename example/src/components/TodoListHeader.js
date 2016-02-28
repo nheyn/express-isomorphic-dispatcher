@@ -2,7 +2,7 @@ import React from 'react';
 
 import TextField from './TextField';
 
-import { BASIC_INFO_SET_TITLE } from '../stores';
+import { BASIC_INFO_SET_TITLE } from '../stores/basicInfo';
 
 const TodoListHeader = React.createClass({
 	propTypes: {
