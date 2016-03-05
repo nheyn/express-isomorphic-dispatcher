@@ -1,6 +1,6 @@
 {
 	"name": "express-isomorphic-dispatcher",
-	"version": "1.0.0-rc3",
+	"version": "1.0.0-rc4",
 	"description": "Connects an isomorphic-dispatcher client Dispatcher to an express app.",
 	"author": "Nick Heyn <nick@heyn.io>",
 	"main": "./lib/index.js",
@@ -20,7 +20,7 @@
 		"babel-preset-stage-0": "^6.3.0",
 		"babel-plugin-syntax-flow": "^6.3.0",
 		"babel-plugin-transform-flow-strip-types": "^6.3.0",
-		"flow-bin": "^0.20.0"
+		"flow-bin": "^0.22.0"
 	},
 	"scripts": {
 		"flow": "./node_modules/.bin/flow",
