@@ -1,6 +1,6 @@
 {
   "name": "express-isomorphic-dispatcher",
-  "version": "1.0.0-rc4",
+  "version": "1.0.1",
   "description": "Connects an isomorphic-dispatcher client Dispatcher to an express app.",
   "author": "Nick Heyn <nick@heyn.io>",
   "main": "./lib/index.js",
