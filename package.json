@@ -1,37 +1,37 @@
 {
-	"name": "express-isomorphic-dispatcher",
-	"version": "1.0.0-rc4",
-	"description": "Connects an isomorphic-dispatcher client Dispatcher to an express app.",
-	"author": "Nick Heyn <nick@heyn.io>",
-	"main": "./lib/index.js",
-	"repository" : {
-		"type" : "git",
-		"url" : "https://github.com/nheyn/express-isomorphic-dispatcher"
-	},
-	"dependencies": {
-		"isomorphic-dispatcher": "1.0.0-rc13",
-		"express": "4",
-		"body-parser": "^1.15.0",
-		"immutable": "^3.7.6"
-	},
-	"devDependencies": {
-		"babel-cli": "^6.3.0",
-		"babel-preset-es2015": "^6.3.0",
-		"babel-preset-stage-0": "^6.3.0",
-		"babel-plugin-syntax-flow": "^6.3.0",
-		"babel-plugin-transform-flow-strip-types": "^6.3.0",
-		"flow-bin": "^0.22.0"
-	},
-	"scripts": {
-		"flow": "./node_modules/.bin/flow",
-		"flow:stop": "./node_modules/.bin/flow stop",
-		"babel": "babel ./src/ -d ./lib/",
-		"build": "npm run flow && npm run babel",
-		"prepublish": "npm run build",
-		"clean": "rm -rf ./lib/ && npm flow:stop"
-	},
-	"license": "MIT",
-	"engines": {
-		"node": "v5"
-	}
+  "name": "express-isomorphic-dispatcher",
+  "version": "1.0.0-rc4",
+  "description": "Connects an isomorphic-dispatcher client Dispatcher to an express app.",
+  "author": "Nick Heyn <nick@heyn.io>",
+  "main": "./lib/index.js",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/nheyn/express-isomorphic-dispatcher"
+  },
+  "dependencies": {
+    "isomorphic-dispatcher": "1.0.0-rc13",
+    "express": "4",
+    "body-parser": "^1.15.0",
+    "immutable": "^3.7.6"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.3.0",
+    "babel-preset-es2015": "^6.3.0",
+    "babel-preset-stage-0": "^6.3.0",
+    "babel-plugin-syntax-flow": "^6.3.0",
+    "babel-plugin-transform-flow-strip-types": "^6.3.0",
+    "flow-bin": "^0.22.0"
+  },
+  "scripts": {
+    "flow": "./node_modules/.bin/flow",
+    "flow:stop": "./node_modules/.bin/flow stop",
+    "babel": "babel ./src/ -d ./lib/",
+    "build": "npm run flow && npm run babel",
+    "prepublish": "npm run build",
+    "clean": "rm -rf ./lib/ && npm flow:stop"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": "v5"
+  }
 }

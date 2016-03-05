@@ -3,14 +3,14 @@ var browserify = require('browserify');
 //var watchify = require('watchify');
 
 var ignore = [
-	//*
-	'express',
-	'babel-cli',
-	'babel-preset-es2015',
-	'babel-preset-stage-0',
-	'babel-preset-react',
-	'browserify',
-	'watchify'//*/
+  //*
+  'express',
+  'babel-cli',
+  'babel-preset-es2015',
+  'babel-preset-stage-0',
+  'babel-preset-react',
+  'browserify',
+  'watchify'//*/
 ];
 
 // Browserify client side app
@@ -23,7 +23,7 @@ var b = browserify(inFile/*, {
   plugin: shouldWatch? [watchify]: null
 }*/);
 ignore.forEach(function(module) {
-	b.ignore(module);
+  b.ignore(module);
 });
 
 // Write file
@@ -32,7 +32,7 @@ var outFile = process.argv[3];
 var appJsWriteStream = fs.createWriteStream(outFile, { flags : 'w' });
 var appJsBundle = b.bundle();
 appJsBundle.on('end', function() {
-	console.log(inFile, '->', outFile);
+  console.log(inFile, '->', outFile);
 });
 
 appJsBundle.pipe(appJsWriteStream);

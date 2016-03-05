@@ -9,6 +9,6 @@ import stores, { encodeState, decodeState } from './stores';
 window.React = React;
 
 window.onload = () => {
-	const dispatcher = createClientDispatcher(stores, { encodeState, decodeState });
-	ReactDOM.render(<App dispatcher={dispatcher} />, window.document.getElementById('react-app'));
+  const dispatcher = createClientDispatcher(stores, { encodeState, decodeState });
+  ReactDOM.render(<App dispatcher={dispatcher} />, window.document.getElementById('react-app'));
 };

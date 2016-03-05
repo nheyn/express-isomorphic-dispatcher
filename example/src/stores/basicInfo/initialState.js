@@ -1,4 +1,4 @@
 export default {
-	title: 'Untitled',
-	authors: []
+  title: 'Untitled',
+  authors: []
 };

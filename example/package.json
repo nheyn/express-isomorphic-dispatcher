@@ -1,30 +1,30 @@
 {
-	"name": "express-isomorphic-dispatcher-example",
-	"version": "1.0.0-rc1",
-	"description": "A simple website that uses express-isomorphic-dispatcher",
-	"author": "Nick Heyn <nick@heyn.io>",
-	"dependencies": {
-		"react": "^0.14.6",
-		"react-dom": "^0.14.6",
-		"express": "4",
-		"babel-polyfill": "^6.3.0",
-		"babel-cli": "^6.3.0",
-		"babel-preset-es2015": "^6.3.0",
-		"babel-preset-stage-0": "^6.3.0",
-		"babel-preset-react": "^6.3.0",
-		"browserify": "13",
-		"isomorphic-dispatcher": "1.0.0-rc13",
-		"express-isomorphic-dispatcher": "file:../../express-isomorphic-dispatcher/"
-	},
-	"scripts": {
-		"babel": "babel ./src -d ./lib",
-		"browserify": "node browserify.js ./lib/client.js ./lib/app.js",
-		"build": "npm run babel && npm run browserify",
-		"server": "node ./lib/server.js",
-		"postinstall": "npm run build",
-		"start": "npm run server"
-	},
-	"engines": {
-		"node": "v5"
-	}
+  "name": "express-isomorphic-dispatcher-example",
+  "version": "1.0.0-rc1",
+  "description": "A simple website that uses express-isomorphic-dispatcher",
+  "author": "Nick Heyn <nick@heyn.io>",
+  "dependencies": {
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
+    "express": "4",
+    "babel-polyfill": "^6.3.0",
+    "babel-cli": "^6.3.0",
+    "babel-preset-es2015": "^6.3.0",
+    "babel-preset-stage-0": "^6.3.0",
+    "babel-preset-react": "^6.3.0",
+    "browserify": "13",
+    "isomorphic-dispatcher": "1.0.0-rc13",
+    "express-isomorphic-dispatcher": "file:../../express-isomorphic-dispatcher/"
+  },
+  "scripts": {
+    "babel": "babel ./src -d ./lib",
+    "browserify": "node browserify.js ./lib/client.js ./lib/app.js",
+    "build": "npm run babel && npm run browserify",
+    "server": "node ./lib/server.js",
+    "postinstall": "npm run build",
+    "start": "npm run server"
+  },
+  "engines": {
+    "node": "v5"
+  }
 }

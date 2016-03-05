@@ -13,7 +13,7 @@ WORKDIR /home/node/express-isomorphic-dispatcher/
 COPY ./flowlib ./flowlib
 COPY ./.flowconfig ./.flowconfig
 COPY ./.babelrc ./.babelrc
-COPY ./package.json	./package.json
+COPY ./package.json  ./package.json
 COPY ./src ./src
 
 RUN chown node:node ./
@@ -29,7 +29,7 @@ WORKDIR /home/node/express-isomorphic-dispatcher/example/
 
 COPY ./example/.babelrc ./.babelrc
 COPY ./example/browserify.js ./browserify.js
-COPY ./example/package.json	./package.json
+COPY ./example/package.json  ./package.json
 COPY ./example/src ./src
 
 RUN chown node:node ./
