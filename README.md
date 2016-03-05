@@ -34,7 +34,7 @@ window.onload = function() {
 ```
 var app = express();
 
-app.use(connectDispatcher(
+app.use(connectServerDispatcher(
   stores,          // The object with initial stores to use in the Dispatcher
   {
     path,        // The path to get 'onServer' dispatches from
