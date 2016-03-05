@@ -11,6 +11,6 @@ export function DEFAULT_DECODE(_: string, data: string): Object {
 
 export default {
 	path: DEFAULT_PATH,
-	encode: DEFAULT_ENCODE,
-	decode: DEFAULT_DECODE
+	encodeState: DEFAULT_ENCODE,
+	decodeState: DEFAULT_DECODE
 };
