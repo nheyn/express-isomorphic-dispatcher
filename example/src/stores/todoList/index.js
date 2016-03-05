@@ -1,6 +1,6 @@
 import { createStore } from 'isomorphic-dispatcher';
 
-import initialState from './initialState';
+import initialState, { TodoListItem } from './initialState';
 import loadItems, { TODO_LIST_LOAD_ITEMS } from './loadItems';
 import addItem, { TODO_LIST_ADD_ITEM } from './addItem';
 import updateDescription, { TODO_LIST_UPDATE_DESCRIPTION } from './updateDescription';
@@ -15,6 +15,7 @@ export default createStore(initialState)
 				.register(uncheckItem);
 
 export {
+	TodoListItem,
 	TODO_LIST_ADD_ITEM,
 	TODO_LIST_LOAD_ITEMS,
 	TODO_LIST_UPDATE_DESCRIPTION,

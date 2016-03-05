@@ -4,10 +4,12 @@ import { TodoListItem } from './initialState';
 
 export const TODO_LIST_LOAD_ITEMS = 'TODO_LIST_LOAD_ITEMS';
 
-export default function uncheckedItem(state, action) {
+export default function uncheckedItem(state, action, onServer) {
 	if(action.type !== TODO_LIST_LOAD_ITEMS) return state;
 
-	return { items: getItemsFromDb() };
+	return onServer(() => {
+		return { items: getItemsFromDb() };
+	});
 }
 
 // Mock for database query that gets the current todo list items
