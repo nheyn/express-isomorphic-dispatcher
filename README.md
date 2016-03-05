@@ -1,5 +1,3 @@
-__NOTE__ Currently not sending dispatchers to server
-
 # Express Isomorphic Dispatcher
 *Express middlware that connects a client and server Isomorphic Dispatcher*
 
@@ -18,8 +16,8 @@ Basic express middleware that automatically connects a client and sever dispatch
 ### Usage
 ##### Client
 ```
-window.onload = () => {
-	const dispatcher = createClientDispatcher(
+window.onload = function() {
+	var dispatcher = createClientDispatcher(
 		stores,					// The object with initial stores to use in the Dispatcher
 		{
 			path,				// The path to send 'onServer' dispatches to
@@ -27,14 +25,16 @@ window.onload = () => {
 			decodeState			// A function that decodes the state of the stores from the server
 		}
 	);
-;
+
+	// Use dispatcher...
+};
 ```
 
 ##### Server
 ```
-let app = express();
+var app = express();
 
-app.use(serverDispatcherWith(
+app.use(connectDispatcher(
 	stores,					// The object with initial stores to use in the Dispatcher
 	{
 		path,				// The path to get 'onServer' dispatches from
@@ -43,6 +43,7 @@ app.use(serverDispatcherWith(
 	}
 ));
 ```
+
 ### Documentation
 Basic usage is given above. More detailed documentation is before class/function definitions within the code.
 
@@ -56,8 +57,6 @@ docker build -d	-p <external port>:8080 express-react-router:example
 ```
 
 ### Plans
-* Fix send bug
-* Finish Example
-	* Get setting title on server working (still need to fix send bug)
-	* Send more complex state to server
 * Add more detailed usage to this document
+* Cache each user's(session's) state on server, to minimize the size of the data passed to the server over ajax
+* Only return changes to the state from the server, to minimize the size of the data returned from the server
