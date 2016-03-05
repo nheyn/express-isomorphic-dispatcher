@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/server';
 import express from 'express';
 import path from 'path';
-import { connectDispatcher } from 'express-isomorphic-dispatcher';
+import { connectServerDispatcher } from 'express-isomorphic-dispatcher';
 
 import App from './components';
 import stores, { encodeState, decodeState } from './stores';
@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 });
 
 // Add Dispatcher to app
-app.use(connectDispatcher(stores, { encodeState, decodeState }));
+app.use(connectServerDispatcher(stores, { encodeState, decodeState }));
 
 // Server side react rendering
 app.get('/', (req, res) => {

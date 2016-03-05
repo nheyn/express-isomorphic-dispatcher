@@ -27,7 +27,7 @@ type ServerDispatcherSettings = {
  *
  * @return					{ExpressRouter}					The router to add to an Express app
  */
-export default function connectDispatcher(
+export default function connectServerDispatcher(
 	stores: StoresObject,
 	settings?: ServerDispatcherSettings = {},
 	getOnServerArg?: (req: ExpressReq) => any

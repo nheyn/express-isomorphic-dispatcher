@@ -1,5 +1,5 @@
 /**
  * @flow
  */
-export { default as connectDispatcher } from './connectDispatcher';
+export { default as connectServerDispatcher } from './connectServerDispatcher';
 export { default as createClientDispatcher } from './createClientDispatcher';
