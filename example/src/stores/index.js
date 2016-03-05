@@ -12,25 +12,20 @@ export default {
 
 // Encode / Decode store states
 export function encodeState(storeName, state) {
-	return JSON.stringify(
-		storeName === 'todoList'?
-			{ ...state, items: state.items.toJS() }:
-			state
-	);
+	if(storeName === 'todoList') return state;
+
+	return { ...state, items: state.items.toJS() };
 }
 
 export function decodeState(storeName, data) {
-	if(storeName === 'todoList') {
-		const state = JSON.parse(data);
-		const { items: encodedItems } = state;
-		if(!Array.isArray(encodedItems)) throw new Error('Todo list items sent to/from the server must be an array');
+	if(storeName !== 'todoList') return data;
 
-		const items = Immutable.List(encodedItems).map((encodedItem) => {
-			return new TodoListItem(encodedItem);
-		});
+	const { items: encodedItems } = data;
+	if(!Array.isArray(encodedItems)) throw new Error('Todo list items sent to/from the server must be an array');
 
-		return { ...state, items };
-	}
+	const items = Immutable.List(encodedItems).map((encodedItem) => {
+		return new TodoListItem(encodedItem);
+	});
 
-	return JSON.parse(data);
+	return { ...data, items };
 }
