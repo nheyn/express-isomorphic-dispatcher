@@ -22,9 +22,11 @@ const App = React.createClass({
 		return <ConnectedTodoListBody />;
 	},
 	render() {
+		const { title } = this.props.dispatcher.getStateFor('pageTitle');
+
 		return (
 			<div>
-				<h3>Todo List</h3>
+				<h3>{title}</h3>
 				<div>
 					{this.renderHeader()}
 					{this.renderBody()}

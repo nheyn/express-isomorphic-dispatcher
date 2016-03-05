@@ -1,11 +1,13 @@
 import Immutable from 'immutable';
 
 import basicInfo from './basicInfo';
+import pageTitle from './pageTitle';
 import todoList, { TodoListItem } from './todoList';
 
 export default {
 	basicInfo,
-	todoList
+	todoList,
+	pageTitle
 };
 
 // Encode / Decode store states
