@@ -2,6 +2,7 @@
  * @flow
  */
 import express from 'express';
+import bodyParser from 'body-parser';
 import { createServerFactory } from 'isomorphic-dispatcher';
 
 import defaultSettings from './defaults';
@@ -38,19 +39,25 @@ export default function serverDispatcherWith(
 		req.dispatcher = createServerFactory(stores, { onServerArg: getOnServerArg? getOnServerArg(req): null });
 		next();
 	});
+	router.use(path, bodyParser.json());
 	router.post(path, (req, res, next) => {
 		// Perform given actions on store
-		const { startingPoints, actions } = decode(req.body, decodeState);
-		const dispatcherPromise = req.dispatcher.getDispatcherAfter(startingPoints, actions);
+		const { actions, startingPoints } = decode(req.body, decodeState);
+
+		const dispatcherPromise = req.dispatcher.getDispatcherAfter(actions, startingPoints);
 
 		dispatcherPromise.then((dispatcher) => {
 			// Get updated stores
 			const updatedStoreNames = Object.keys(startingPoints);
-			const updatedStates = dispatcher.getStateForAll().filter((_, storeName) => {
-				return updatedStoreNames.includes(storeName);
-			});
+			const newStates = dispatcher.getStateForAll();
 
-			// Send response
+			// Filter out stores not being dispatched on this request
+			let updatedStates = {};
+			for(let storeName in newStates) {
+				if(updatedStoreNames.indexOf(storeName) !== -1) updatedStates[storeName] = newStates[storeName];
+			}
+
+			// Encode/Send response
 			const responseJson = encode(updatedStates, encodeState);
 			res.send(responseJson);
 		}).catch((err) => {

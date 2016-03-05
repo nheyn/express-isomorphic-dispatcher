@@ -9,8 +9,9 @@
 		"url" : "https://github.com/nheyn/express-isomorphic-dispatcher"
 	},
 	"dependencies": {
-		"isomorphic-dispatcher": "1.0.0-rc9",
+		"isomorphic-dispatcher": "1.0.0-rc12",
 		"express": "4",
+		"body-parser": "^1.15.0",
 		"immutable": "^3.7.6"
 	},
 	"devDependencies": {

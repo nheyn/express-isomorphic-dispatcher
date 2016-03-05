@@ -25,7 +25,7 @@ export function encode(pausePoints: StartingPoints, actions: Array<Action>, enco
 		const { state, index } = pausePoints[storeName];
 		const encodedState = encodeState(storeName, state);
 
-		startingPoints[storeName] = { state: encodeState, index };
+		startingPoints[storeName] = { state: encodedState, index };
 	}
 
 	return { startingPoints, actions };
@@ -42,11 +42,28 @@ export function encode(pausePoints: StartingPoints, actions: Array<Action>, enco
 export function decode(data: ReqData, decodeState: DecodeStateFunc): DecodedPause {
 	const { startingPoints: encodeStartingPoints, actions } = data;
 
+	// Check inputs
+	if(typeof encodeStartingPoints !== 'object') {
+		throw new Error('Server dispatch requires startingPoints to be an object');
+	}
+	if(!actions || !Array.isArray(actions)) {
+		throw new Error('Server dispatch requires actions to be an array');
+	}
+
 	let startingPoints = {};
 	for(let storeName in encodeStartingPoints) {
 		const { state: encodeState, index } = encodeStartingPoints[storeName];
-		const state = decodeState(storeName, encodeState);
 
+		// Check inputs
+		if(typeof encodeState !== 'string') {
+			throw new Error('Server dispatch requires startingPoint.state to be a string');
+		}
+		if(typeof index !== 'number') {
+			throw new Error('Server dispatch requires startingPoint.index to be a number');
+		}
+
+		// Decode current state
+		const state = decodeState(storeName, encodeState);
 		startingPoints[storeName] = { state, index };
 	}
 

@@ -1,7 +1,7 @@
 /**
  * @flow
  */
-export const DEFAULT_PATH = 'dispatch/';
+export const DEFAULT_PATH = '/dispatch/';
 export function DEFAULT_ENCODE(_: string, data: Object): string {
 	return JSON.stringify(data);
 }
