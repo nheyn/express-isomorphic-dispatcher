@@ -1,6 +1,6 @@
 {
   "name": "express-isomorphic-dispatcher-example",
-  "version": "1.0.0-rc1",
+  "version": "1.0.0",
   "description": "A simple website that uses express-isomorphic-dispatcher",
   "author": "Nick Heyn <nick@heyn.io>",
   "dependencies": {
