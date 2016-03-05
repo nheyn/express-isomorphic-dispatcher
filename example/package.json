@@ -13,15 +13,16 @@
 		"babel-preset-stage-0": "^6.3.0",
 		"babel-preset-react": "^6.3.0",
 		"browserify": "13",
-		"isomorphic-dispatcher": "1.0.0-rc8",
+		"isomorphic-dispatcher": "1.0.0-rc12",
 		"express-isomorphic-dispatcher": "file:../../express-isomorphic-dispatcher/"
 	},
 	"scripts": {
 		"babel": "babel ./src -d ./lib",
-		"browserify": "node browserify.js",
+		"browserify": "node browserify.js ./lib/client.js ./lib/app.js",
 		"build": "npm run babel && npm run browserify",
-		"start:server": "node ./lib/server.js",
-		"start": "npm run build && npm run start:server"
+		"server": "node ./lib/server.js",
+		"postinstall": "npm run build",
+		"start": "npm run server"
 	},
 	"engines": {
 		"node": "v5"

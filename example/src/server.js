@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 		)
 	);
 });
-app.use('/app.js', express.static(path.join(__dirname, '../app.js')));
+app.use('/app.js', express.static(path.join(__dirname, './app.js')));
 app.use((err, req, res, next) => {
 	console.error(`[${req.url}]: `, err.stack);
 	res.status(500).send(`[${err.name}] ${err.message}`);

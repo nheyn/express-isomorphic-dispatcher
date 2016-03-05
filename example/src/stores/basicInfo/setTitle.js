@@ -7,8 +7,5 @@ export default function setTitle(state, action, onServer) {
 		return state;
 	}
 
-	//return { ...state, title: action.title + '----' };
-	return onServer(() => {
-		return { ...state, title: action.title + '---' };
-	});
+	return { ...state, title: action.title };
 }

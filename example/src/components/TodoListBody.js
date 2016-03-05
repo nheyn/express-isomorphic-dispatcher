@@ -6,7 +6,8 @@ import {
 	TODO_LIST_CHECK_ITEM,
 	TODO_LIST_UNCHECK_ITEM,
 	TODO_LIST_UPDATE_DESCRIPTION,
-	TODO_LIST_ADD_ITEM
+	TODO_LIST_ADD_ITEM,
+	TODO_LIST_LOAD_ITEMS
 } from '../stores/todoList';
 
 const TodoListBody = React.createClass({
@@ -37,6 +38,11 @@ const TodoListBody = React.createClass({
 		this.props.dispatch({
 			type: TODO_LIST_ADD_ITEM,
 			description
+		});
+	},
+	componentDidMount() {
+		this.props.dispatch({
+			type: TODO_LIST_LOAD_ITEMS
 		});
 	},
 	render() {
